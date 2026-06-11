@@ -235,6 +235,9 @@ jobs:
     runs-on: ubuntu-24.04-arm
 
     steps:
+      - name: "Checkout Repo"
+        uses: actions/checkout@v4
+
       - name: "Install Build Tools"
         run: |
           sudo apt-get update
@@ -304,6 +307,9 @@ jobs:
     runs-on: ubuntu-24.04-arm
 
     steps:
+      - name: "Checkout Repo"
+        uses: actions/checkout@v4
+
       - name: "Install Build Tools"
         run: |
           sudo apt-get update
