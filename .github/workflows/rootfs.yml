@@ -123,7 +123,7 @@ jobs:
 
       - name: "Checkout Repo"
         if: ${{ inputs.kernel_source == 'custom_build' }}
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: "Install Build Tools"
         if: ${{ inputs.kernel_source == 'custom_build' }}
@@ -140,7 +140,7 @@ jobs:
 
       - name: "Restore ccache"
         if: ${{ inputs.kernel_source == 'custom_build' }}
-        uses: actions/cache@v4
+        uses: actions/cache@v6
         with:
           path: /home/runner/.ccache
           key: ccache-kernel-${{ inputs.kernel_branch }}-${{ inputs.kernel_config }}-${{ hashFiles(inputs.kernel_config) }}
@@ -223,7 +223,7 @@ jobs:
 
       - name: "Upload Kernel Package"
         if: ${{ inputs.kernel_source == 'custom_build' }}
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: kernel-custom-deb
           path: linux-xiaomi-sheng.deb
@@ -232,7 +232,7 @@ jobs:
 
       - name: "Upload Kernel Image"
         if: ${{ inputs.kernel_source == 'custom_build' }}
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: kernel-custom-image
           path: Image.gz-dtb_sheng
@@ -248,7 +248,7 @@ jobs:
 
     steps:
       - name: "Checkout Repo"
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: "Install Build Tools"
         run: |
@@ -305,7 +305,7 @@ jobs:
           echo "✓ fastrpc packaged"
 
       - name: "Upload fastrpc"
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: fastrpc-deb
           path: fastrpc_*.deb
@@ -321,7 +321,7 @@ jobs:
 
     steps:
       - name: "Checkout Repo"
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: "Install Build Tools"
         run: |
@@ -378,7 +378,7 @@ jobs:
           echo "✓ libssc packaged"
 
       - name: "Upload libssc"
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: libssc-deb
           path: libssc_*.deb
@@ -407,7 +407,7 @@ jobs:
           echo "✓ Build tools installed"
 
       - name: "Download libssc"
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v8
         with:
           name: libssc-deb
 
@@ -461,7 +461,7 @@ jobs:
           echo "✓ iio-sensor-proxy packaged"
 
       - name: "Upload iio-sensor-proxy"
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: iio-sensor-proxy-deb
           path: iio-sensor-proxy_*.deb
@@ -477,7 +477,7 @@ jobs:
 
     steps:
       - name: "Checkout Repo"
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: "Install Build Tools"
         run: |
@@ -528,7 +528,7 @@ jobs:
           echo "✓ sheng-sensors packaged"
 
       - name: "Upload sheng-sensors"
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: sheng-sensors-deb
           path: sheng-sensors_*.deb
@@ -544,7 +544,7 @@ jobs:
 
     steps:
       - name: "Checkout Repo"
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: "Install Build Tools"
         run: |
@@ -596,7 +596,7 @@ jobs:
           echo "✓ sheng-devauth packaged"
 
       - name: "Upload sheng-devauth"
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: sheng-devauth-deb
           path: sheng-devauth.deb
@@ -630,7 +630,7 @@ jobs:
       # ----------------------------------------------------------------
 
       - name: "Checkout Repo"
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: "Verify Arguments"
         run: |
@@ -701,13 +701,13 @@ jobs:
 
       - name: "[Custom] Download Kernel Package"
         if: ${{ inputs.kernel_source == 'custom_build' }}
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v8
         with:
           name: kernel-custom-deb
 
       - name: "[Custom] Download Kernel Image"
         if: ${{ inputs.kernel_source == 'custom_build' }}
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v8
         with:
           name: kernel-custom-image
 
@@ -716,27 +716,27 @@ jobs:
       # ----------------------------------------------------------------
 
       - name: "Download fastrpc"
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v8
         with:
           name: fastrpc-deb
 
       - name: "Download libssc"
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v8
         with:
           name: libssc-deb
 
       - name: "Download iio-sensor-proxy"
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v8
         with:
           name: iio-sensor-proxy-deb
 
       - name: "Download sheng-sensors"
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v8
         with:
           name: sheng-sensors-deb
 
       - name: "Download sheng-devauth"
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v8
         with:
           name: sheng-devauth-deb
 
@@ -1038,7 +1038,7 @@ jobs:
       # ----------------------------------------------------------------
 
       - name: "Upload RootFS Image"
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: rootfs-${{ inputs.distro_suite }}-${{ inputs.desktop }}-${{ steps.partition.outputs.label }}
           path: rootfs.img
@@ -1047,7 +1047,7 @@ jobs:
           compression-level: 1
 
       - name: "Upload Boot Image"
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: boot-${{ inputs.distro_suite }}-${{ inputs.desktop }}-${{ steps.partition.outputs.label }}
           path: boot.img
