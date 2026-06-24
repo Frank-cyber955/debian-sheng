@@ -749,6 +749,14 @@ jobs:
           dpkg-deb --build --root-owner-group alsa-xiaomi-sheng
           echo "✓ alsa-xiaomi-sheng.deb packaged"
 
+      - name: "Upload alsa-xiaomi-sheng"
+        uses: actions/upload-artifact@v7
+        with:
+          name: alsa-xiaomi-sheng-deb
+          path: alsa-xiaomi-sheng.deb
+          retention-days: 3
+          if-no-files-found: error
+
       - name: "Package firmware-xiaomi-sheng"
         run: |
           git clone --depth 1 \
@@ -761,6 +769,14 @@ jobs:
           dpkg-deb --build --root-owner-group firmware-xiaomi-sheng
           echo "✓ firmware-xiaomi-sheng.deb packaged"
 
+      - name: "Upload firmware-xiaomi-sheng"
+        uses: actions/upload-artifact@v7
+        with:
+          name: firmware-xiaomi-sheng-deb
+          path: firmware-xiaomi-sheng.deb
+          retention-days: 3
+          if-no-files-found: error
+
       - name: "Download xiaomi-mipps-auth"
         run: |
           LATEST_TAG=$(gh release list --repo ianchb/xiaomi-mipps-auth --limit 1 --json tagName -q '.[0].tagName')
@@ -771,6 +787,14 @@ jobs:
           echo "✓ xiaomi-mipps-auth.deb downloaded"
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: "Upload xiaomi-mipps-auth"
+        uses: actions/upload-artifact@v7
+        with:
+          name: xiaomi-mipps-auth-deb
+          path: xiaomi-mipps-auth*.deb
+          retention-days: 3
+          if-no-files-found: error
 
       # ----------------------------------------------------------------
       # Create Image
